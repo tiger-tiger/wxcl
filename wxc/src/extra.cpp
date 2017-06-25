@@ -1,0 +1,1537 @@
+#include "wrapper.h"
+#include "extra.h"
+
+static const char* hasDefs[] = {
+#ifdef wxHAS_RADIO_MENU_ITEMS
+  "RADIO_MENU_ITEMS",
+#endif
+};
+/*-----------------------------------------------------------------------------
+  event exports
+-----------------------------------------------------------------------------*/
+extern "C"
+{
+
+EWXWEXPORT(int,expEVT_DELETE)()
+{
+  return (int)wxEVT_DELETE;
+}
+
+EWXWEXPORT(int,expEVT_HTML_CELL_CLICKED)()
+{
+  return (int)wxEVT_HTML_CELL_CLICKED;
+}
+
+EWXWEXPORT(int,expEVT_HTML_CELL_MOUSE_HOVER)()
+{
+  return (int)wxEVT_HTML_CELL_MOUSE_HOVER;
+}
+
+EWXWEXPORT(int,expEVT_HTML_LINK_CLICKED)()
+{
+  return (int)wxEVT_HTML_LINK_CLICKED;
+}
+
+
+EWXWEXPORT(int,expEVT_HTML_SET_TITLE)()
+{
+  return (int)wxEVT_HTML_SET_TITLE;
+}
+
+
+EWXWEXPORT(int,expEVT_INPUT_SINK)()
+{
+  return (int)wxEVT_INPUT_SINK;
+}
+
+
+EWXWEXPORT(int,expEVT_SORT)()
+{
+  return (int)wxEVT_SORT;
+}
+
+/* list control */
+EWXWEXPORT(int,expEVT_COMMAND_LIST_CACHE_HINT)()
+{
+  return (int)wxEVT_COMMAND_LIST_CACHE_HINT;
+}
+
+EWXWEXPORT(int,expEVT_COMMAND_LIST_COL_RIGHT_CLICK)()
+{
+  return (int)wxEVT_COMMAND_LIST_COL_RIGHT_CLICK;
+}
+
+EWXWEXPORT(int,expEVT_COMMAND_LIST_COL_BEGIN_DRAG)()
+{
+  return (int)wxEVT_COMMAND_LIST_COL_BEGIN_DRAG;
+}
+
+EWXWEXPORT(int,expEVT_COMMAND_LIST_COL_DRAGGING)()
+{
+  return (int)wxEVT_COMMAND_LIST_COL_DRAGGING;
+}
+
+EWXWEXPORT(int,expEVT_COMMAND_LIST_COL_END_DRAG)()
+{
+  return (int)wxEVT_COMMAND_LIST_COL_END_DRAG;
+}
+
+} /* extern "C" */
+
+/*-----------------------------------------------------------------------------
+  pre processor definitions
+-----------------------------------------------------------------------------*/
+static const char* defineDefs[] = {
+#ifdef __WINDOWS__
+  "__WINDOWS__",
+#endif // any Windows, yom may also use
+#ifdef __WIN16__
+  "__WIN16__",
+#endif // Win16 API
+#ifdef __WIN32__
+  "__WIN32__",
+#endif // Win32 API
+#ifdef __WIN95__
+  "__WIN95__",
+#endif // Windows 95 or NT 4.0 and above system (not NT 3.5x)
+#ifdef __WXGTK__
+  "__WXGTK__",
+#endif // GTK
+#ifdef __WXGTK12__
+  "__WXGTK12__",
+#endif // GTK 1.2 or higher
+#ifdef __WXGTK20__
+  "__WXGTK20__",
+#endif // GTK 2.0 or higher
+#ifdef __WXMOTIF__
+  "__WXMOTIF__",
+#endif // Motif
+#ifdef __WXMAC__
+  "__WXMAC__",
+#endif // MacOS
+#ifdef __WXMGL__
+  "__WXMGL__",
+#endif // SciTech Soft MGL
+#ifdef __WXUNIVERSAL__
+  "__WXUNIVERSAL__",
+#endif //will be also defined)
+#ifdef __WXMSW__
+  "__WXMSW__",
+#endif // Any Windows
+#ifdef __WXOS2__
+  "__WXOS2__",
+#endif // OS/2 native Presentation Manager
+#ifdef __WXPM__
+  "__WXPM__",
+#endif // OS/2 native Presentation Manager
+#ifdef __WXSTUBS__
+  "__WXSTUBS__",
+#endif // Stubbed version ('template' wxWin implementation)
+#ifdef __WXXT__
+  "__WXXT__",
+#endif // Xt; mutually exclusive with WX_MOTIF, not implemented in wxWindows 2.x
+// wxX11
+#ifdef __WXX11__
+  "__WXX11__",
+#endif
+#ifdef __WXUNIVERSAL__
+  "__WXUNIVERSAL__",
+#endif //will be also defined)
+#ifdef __WXWINE__
+  "__WXWINE__",
+#endif // WINE (i.e. Win32 on Unix)
+#ifdef __WXUNIVERSAL__
+  "__WXUNIVERSAL__",
+#endif // wxUniversal port, always defined in addition to one of the symbols above so this should be tested first.
+#ifdef __X__
+  "__X__",
+#endif // any X11-based GUI toolkit except GTK+
+
+// any Mac OS version
+#ifdef __APPLE__
+  "__APPLE__",
+#endif
+// AIX
+#ifdef __AIX__
+  "__AIX__",
+#endif
+// Any BSD
+#ifdef __BSD__
+  "__BSD__",
+#endif
+// Cygwin: Unix on Win32
+#ifdef __CYGWIN__
+  "__CYGWIN__",
+#endif
+// Mac OS X
+#ifdef __DARWIN__
+  "__DARWIN__",
+#endif
+#ifdef ____DATA_GENERAL____
+  "__DATA_GENERAL__",
+#endif
+// DOS (used with wxMGL only)
+#ifdef __DOS_GENERAL__
+  "__DOS_GENERAL__",
+#endif
+// FreeBSD
+#ifdef __FREEBSD__
+  "__FREEBSD__",
+#endif
+// HP-UX (Unix)
+#ifdef ____HPUX____
+  "__HPUX__",
+#endif
+// Linux
+#ifdef __LINUX__
+  "__LINUX__",
+#endif
+// OSF/1
+#ifdef __OSF__
+  "__OSF__",
+#endif
+// IRIX
+#ifdef __SGI__
+  "__SGI__",
+#endif
+// Solaris
+#ifdef __SOLARIS__
+  "__SOLARIS__",
+#endif
+// Any Sun
+#ifdef __SUN__
+  "__SUN__",
+#endif
+// Sun OS
+#ifdef __SUNOS__
+  "__SUNOS__",
+#endif
+// SystemV R4
+#ifdef __SVR4__
+  "__SVR4__",
+#endif
+// SystemV generic
+#ifdef __SYSV__
+  "__SYSV__",
+#endif
+// Ultrix
+#ifdef __ULTRIX__
+  "__ULTRIX__",
+#endif
+// any Unix
+#ifdef __UNIX__
+  "__UNIX__",
+#endif
+// Unix, BeOS or VMS
+#ifdef __UNIX_LIKE__
+  "__UNIX_LIKE__",
+#endif
+// VMS
+#ifdef __VMS__
+  "__VMS__",
+#endif
+// any Windows
+#ifdef __WINDOWS__
+  "__WINDOWS__",
+#endif
+
+// DEC Alpha architecture
+#ifdef __ALPHA__
+  "__ALPHA__",
+#endif
+// Intel i386 or compatible
+#ifdef __INTEL__
+  "__INTEL__",
+#endif
+// Motorola Power PC
+#ifdef __POWERPC__
+  "__POWERPC__",
+#endif
+
+// Borland C++
+#ifdef __BORLANDC__
+  "__BORLANDC__",
+#endif
+// DJGPP
+#ifdef __DJGPP__
+  "__DJGPP__",
+#endif
+// Gnu C++ on any platform
+#ifdef __GNUG__
+  "__GNUG__",
+#endif
+// GnuWin32 compiler
+#ifdef __GNUWIN32__
+  "__GNUWIN32__",
+#endif
+// CodeWarrior MetroWerks compiler
+#ifdef __MWERKS__
+  "__MWERKS__",
+#endif
+// Sun CC
+#ifdef __SUNCC__
+  "__SUNCC__",
+#endif
+// Symantec C++
+#ifdef __SYMANTECC__
+  "__SYMANTECC__",
+#endif
+// IBM Visual Age (OS/2)
+#ifdef __VISAGECPP__
+  "__VISAGECPP__",
+#endif
+// Microsoft Visual C++
+#ifdef __VISUALC__
+  "__VISUALC__",
+#endif
+// AIX compiler
+#ifdef __XLC__
+  "__XLC__",
+#endif
+// Watcom C++
+#ifdef __WATCOMC__
+  "__WATCOMC__",
+#endif
+  NULL
+};
+
+static const char* useDefs[] = {
+#ifdef wxUSE_UNIX
+  "UNIX",
+#endif
+#ifdef wxUSE_NANOX
+  "NANOX",
+#endif
+#ifdef wxUSE_NATIVE_STATUSBAR
+  "NATIVE_STATUSBAR",
+#endif
+#ifdef wxUSE_OWNER_DRAWN
+  "OWNER_DRAWN",
+#endif
+#ifdef wxUSE_OWNER_DRAWN
+  "OWNER_DRAWN",
+#endif
+#ifdef wxUSE_RICHEDIT
+  "RICHEDIT",
+#endif
+#ifdef wxUSE_RICHEDIT
+  "RICHEDIT",
+#endif
+#ifdef wxUSE_REGEX
+  "REGEX",
+#endif
+#ifdef wxUSE_ZLIB
+  "ZLIB",
+#endif
+#ifdef wxUSE_LIBPNG
+  "LIBPNG",
+#endif
+#ifdef wxUSE_LIBJPEG
+  "LIBJPEG",
+#endif
+#ifdef wxUSE_LIBTIFF
+  "LIBTIFF",
+#endif
+#ifdef wxUSE_ODBC
+  "ODBC",
+#endif
+#ifdef wxUSE_FREETYPE
+  "FREETYPE",
+#endif
+#ifdef wxUSE_THREADS
+  "THREADS",
+#endif
+#ifdef wxUSE_OPENGL
+  "OPENGL",
+#endif
+#ifdef wxUSE_GLCANVAS
+  "GLCANVAS",
+#endif
+#ifdef wxUSE_GUI
+  "GUI",
+#endif
+#ifdef wxUSE_NOGUI
+  "NOGUI",
+#endif
+#ifdef wxUSE_ON_FATAL_EXCEPTION
+  "ON_FATAL_EXCEPTION",
+#endif
+#ifdef wxUSE_SNGLINST_CHECKER
+  "SNGLINST_CHECKER",
+#endif
+#ifdef wxUSE_CONSTRAINTS
+  "CONSTRAINTS",
+#endif
+#ifdef wxUSE_VALIDATORS
+  "VALIDATORS",
+#endif
+#ifdef wxUSE_CONTROLS
+  "CONTROLS",
+#endif
+#ifdef wxUSE_POPUPWIN
+  "POPUPWIN",
+#endif
+#ifdef wxUSE_TIPWINDOW
+  "TIPWINDOW",
+#endif
+#ifdef wxUSE_ACCEL
+  "ACCEL",
+#endif
+#ifdef wxUSE_CALENDARCTRL
+  "CALENDARCTRL",
+#endif
+#ifdef wxUSE_FILEDLG
+  "FILEDLG",
+#endif
+#ifdef wxUSE_FINDREPLDLG
+  "FINDREPLDLG",
+#endif
+#ifdef wxUSE_FONTDLG
+  "FONTDLG",
+#endif
+#ifdef wxUSE_MIMETYPE
+  "MIMETYPE",
+#endif
+#ifdef wxUSE_SYSTEM_OPTIONS
+  "SYSTEM_OPTIONS",
+#endif
+#ifdef wxUSE_MSGDLG
+  "MSGDLG",
+#endif
+#ifdef wxUSE_NUMBERDLG
+  "NUMBERDLG",
+#endif
+#ifdef wxUSE_TEXTDLG
+  "TEXTDLG",
+#endif
+#ifdef wxUSE_STARTUP_TIPS
+  "STARTUP_TIPS",
+#endif
+#ifdef wxUSE_PROGRESSDLG
+  "PROGRESSDLG",
+#endif
+#ifdef wxUSE_CHOICEDLG
+  "CHOICEDLG",
+#endif
+#ifdef wxUSE_COLOURDLG
+  "COLOURDLG",
+#endif
+#ifdef wxUSE_DIRDLG
+  "DIRDLG",
+#endif
+#ifdef wxUSE_DRAGIMAGE
+  "DRAGIMAGE",
+#endif
+#ifdef wxUSE_PROPSHEET
+  "PROPSHEET",
+#endif
+#ifdef wxUSE_WIZARDDLG
+  "WIZARDDLG",
+#endif
+#ifdef wxUSE_SPLASH
+  "SPLASH",
+#endif
+#ifdef wxUSE_JOYSTICK
+  "JOYSTICK",
+#endif
+#ifdef wxUSE_BUTTON
+  "BUTTON",
+#endif
+#ifdef wxUSE_CARET
+  "CARET",
+#endif
+#ifdef wxUSE_BMPBUTTON
+  "BMPBUTTON",
+#endif
+#ifdef wxUSE_CHECKBOX
+  "CHECKBOX",
+#endif
+#ifdef wxUSE_CHECKLISTBOX
+  "CHECKLISTBOX",
+#endif
+#ifdef wxUSE_COMBOBOX
+  "COMBOBOX",
+#endif
+#ifdef wxUSE_CHOICE
+  "CHOICE",
+#endif
+#ifdef wxUSE_GAUGE
+  "GAUGE",
+#endif
+#ifdef wxUSE_GRID
+  "GRID",
+#endif
+#ifdef wxUSE_NEW_GRID
+  "NEW_GRID",
+#endif
+#ifdef wxUSE_IMAGLIST
+  "IMAGLIST",
+#endif
+#ifdef wxUSE_LISTBOX
+  "LISTBOX",
+#endif
+#ifdef wxUSE_LISTCTRL
+  "LISTCTRL",
+#endif
+#ifdef wxUSE_MENUS
+  "MENUS",
+#endif
+#ifdef wxUSE_NOTEBOOK
+  "NOTEBOOK",
+#endif
+#ifdef wxUSE_RADIOBOX
+  "RADIOBOX",
+#endif
+#ifdef wxUSE_RADIOBTN
+  "RADIOBTN",
+#endif
+#ifdef wxUSE_SASH
+  "SASH",
+#endif
+#ifdef wxUSE_SCROLLBAR
+  "SCROLLBAR",
+#endif
+#ifdef wxUSE_SLIDER
+  "SLIDER",
+#endif
+#ifdef wxUSE_SPINBTN
+  "SPINBTN",
+#endif
+#ifdef wxUSE_SPINCTRL
+  "SPINCTRL",
+#endif
+#ifdef wxUSE_SPLITTER
+  "SPLITTER",
+#endif
+#ifdef wxUSE_STATBMP
+  "STATBMP",
+#endif
+#ifdef wxUSE_STATBOX
+  "STATBOX",
+#endif
+#ifdef wxUSE_STATLINE
+  "STATLINE",
+#endif
+#ifdef wxUSE_STATTEXT
+  "STATTEXT",
+#endif
+#ifdef wxUSE_STATUSBAR
+  "STATUSBAR",
+#endif
+#ifdef wxUSE_TOGGLEBTN
+  "TOGGLEBTN",
+#endif
+#ifdef wxUSE_TAB_DIALOG
+  "TAB_DIALOG",
+#endif
+#ifdef wxUSE_TABDIALOG
+  "TABDIALOG",
+#endif
+#ifdef wxUSE_TEXTCTRL
+  "TEXTCTRL",
+#endif
+#ifdef wxUSE_TOOLBAR
+  "TOOLBAR",
+#endif
+#ifdef wxUSE_TOOLBAR_NATIVE
+  "TOOLBAR_NATIVE",
+#endif
+#ifdef wxUSE_TOOLBAR_SIMPLE
+  "TOOLBAR_SIMPLE",
+#endif
+#ifdef wxUSE_BUTTONBAR
+  "BUTTONBAR",
+#endif
+#ifdef wxUSE_TREELAYOUT
+  "TREELAYOUT",
+#endif
+#ifdef wxUSE_TREECTRL
+  "TREECTRL",
+#endif
+#ifdef wxUSE_LONGLONG
+  "LONGLONG",
+#endif
+#ifdef wxUSE_GEOMETRY
+  "GEOMETRY",
+#endif
+#ifdef wxUSE_CMDLINE_PARSER
+  "CMDLINE_PARSER",
+#endif
+#ifdef wxUSE_DATETIME
+  "DATETIME",
+#endif
+#ifdef wxUSE_FILE
+  "FILE",
+#endif
+#ifdef wxUSE_FFILE
+  "FFILE",
+#endif
+#ifdef wxUSE_FSVOLUME
+  "FSVOLUME",
+#endif
+#ifdef wxUSE_TEXTBUFFER
+  "TEXTBUFFER",
+#endif
+#ifdef wxUSE_TEXTFILE
+  "TEXTFILE",
+#endif
+#ifdef wxUSE_LOG
+  "LOG",
+#endif
+#ifdef wxUSE_LOGWINDOW
+  "LOGWINDOW",
+#endif
+#ifdef wxUSE_LOGGUI
+  "LOGGUI",
+#endif
+#ifdef wxUSE_LOG_DIALOG
+  "LOG_DIALOG",
+#endif
+#ifdef wxUSE_STOPWATCH
+  "STOPWATCH",
+#endif
+#ifdef wxUSE_TIMEDATE
+  "TIMEDATE",
+#endif
+#ifdef wxUSE_WAVE
+  "WAVE",
+#endif
+#ifdef wxUSE_CONFIG
+  "CONFIG",
+#endif
+#ifdef wxUSE_FONTMAP
+  "FONTMAP",
+#endif
+#ifdef wxUSE_INTL
+  "INTL",
+#endif
+#ifdef wxUSE_PROTOCOL
+  "PROTOCOL",
+#endif
+#ifdef wxUSE_PROTOCOL_FILE
+  "PROTOCOL_FILE",
+#endif
+#ifdef wxUSE_PROTOCOL_FTP
+  "PROTOCOL_FTP",
+#endif
+#ifdef wxUSE_PROTOCOL_HTTP
+  "PROTOCOL_HTTP",
+#endif
+#ifdef wxUSE_STREAMS
+  "STREAMS",
+#endif
+#ifdef wxUSE_SOCKETS
+  "SOCKETS",
+#endif
+#ifdef wxUSE_DIALUP_MANAGER
+  "DIALUP_MANAGER",
+#endif
+#ifdef wxUSE_STD_IOSTREAM
+  "STD_IOSTREAM",
+#endif
+#ifdef wxUSE_DYNLIB_CLASS
+  "DYNLIB_CLASS",
+#endif
+#ifdef wxUSE_DYNAMIC_LOADER
+  "DYNAMIC_LOADER",
+#endif
+#ifdef wxUSE_TIMER
+  "TIMER",
+#endif
+#ifdef wxUSE_AFM_FOR_POSTSCRIPT
+  "AFM_FOR_POSTSCRIPT",
+#endif
+#ifdef wxUSE_NORMALIZED_PS_FONTS
+  "NORMALIZED_PS_FONTS",
+#endif
+#ifdef wxUSE_POSTSCRIPT
+  "POSTSCRIPT",
+#endif
+#ifdef wxUSE_WCHAR_T
+  "WCHAR_T",
+#endif
+#ifdef wxUSE_UNICODE
+  "UNICODE",
+#endif
+#ifdef wxUSE_UNICODE_MSLU
+  "UNICODE_MSLU",
+#endif
+#ifdef wxUSE_URL
+  "URL",
+#endif
+#ifdef wxUSE_WCSRTOMBS
+  "WCSRTOMBS",
+#endif
+#ifdef wxUSE_EXPERIMENTAL_
+  "EXPERIMENTAL_PRINTF",
+#endif
+#ifdef wxUSE_IPC
+  "IPC",
+#endif
+#ifdef wxUSE_X_RESOURCES
+  "X_RESOURCES",
+#endif
+#ifdef wxUSE_CLIPBOARD
+  "CLIPBOARD",
+#endif
+#ifdef wxUSE_DATAOBJ
+  "DATAOBJ",
+#endif
+#ifdef wxUSE_TOOLTIPS
+  "TOOLTIPS",
+#endif
+#ifdef wxUSE_DRAG_AND_DROP
+  "DRAG_AND_DROP",
+#endif
+#ifdef wxUSE_OLE
+  "OLE",
+#endif
+#ifdef wxUSE_SPLINES
+  "SPLINES",
+#endif
+#ifdef wxUSE_MDI_ARCHITECTURE
+  "MDI_ARCHITECTURE",
+#endif
+#ifdef wxUSE_DOC_VIEW_ARCHITECTURE
+  "DOC_VIEW_ARCHITECTURE",
+#endif
+#ifdef wxUSE_PRINTING_ARCHITECTURE
+  "PRINTING_ARCHITECTURE",
+#endif
+#ifdef wxUSE_PROLOGIO
+  "PROLOGIO",
+#endif
+#ifdef wxUSE_RESOURCES
+  "RESOURCES",
+#endif
+#ifdef wxUSE_WX_RESOURCES
+  "WX_RESOURCES",
+#endif
+#ifdef wxUSE_HELP
+  "HELP",
+#endif
+#ifdef wxUSE_WXHTML_HELP
+  "WXHTML_HELP",
+#endif
+#ifdef wxUSE_MS_HTML_HELP
+  "MS_HTML_HELP",
+#endif
+#ifdef wxUSE_IOSTREAMH
+  "IOSTREAMH",
+#endif
+#ifdef wxUSE_APPLE_IEEE
+  "APPLE_IEEE",
+#endif
+#ifdef wxUSE_MEMORY_TRACING
+  "MEMORY_TRACING",
+#endif
+#ifdef wxUSE_DEBUG_NEW_ALWAYS
+  "DEBUG_NEW_ALWAYS",
+#endif
+#ifdef wxUSE_DEBUG_CONTEXT
+  "DEBUG_CONTEXT",
+#endif
+#ifdef wxUSE_GLOBAL_MEMORY_OPERATORS
+  "GLOBAL_MEMORY_OPERATORS",
+#endif
+#ifdef wxUSE_SPLINES
+  "SPLINES",
+#endif
+#ifdef wxUSE_DYNAMIC_CLASSES
+  "DYNAMIC_CLASSES",
+#endif
+#ifdef wxUSE_METAFILE
+  "METAFILE",
+#endif
+#ifdef wxUSE_ENH_METAFILE
+  "ENH_METAFILE",
+#endif
+#ifdef wxUSE_MINIFRAME
+  "MINIFRAME",
+#endif
+#ifdef wxUSE_HTML
+  "HTML",
+#endif
+#ifdef wxUSE_FILESYSTEM
+  "FILESYSTEM",
+#endif
+#ifdef wxUSE_FS_INET
+  "FS_INET",
+#endif
+#ifdef wxUSE_FS_ZIP
+  "FS_ZIP",
+#endif
+#ifdef wxUSE_BUSYINFO
+  "BUSYINFO",
+#endif
+#ifdef wxUSE_ZIPSTREAM
+  "ZIPSTREAM",
+#endif
+#ifdef wxUSE_PALETTE
+  "PALETTE",
+#endif
+#ifdef wxUSE_IMAGE
+  "IMAGE",
+#endif
+#ifdef wxUSE_GIF
+  "GIF",
+#endif
+#ifdef wxUSE_PCX
+  "PCX",
+#endif
+#ifdef wxUSE_IFF
+  "IFF",
+#endif
+#ifdef wxUSE_PNM
+  "PNM",
+#endif
+#ifdef wxUSE_XPM
+  "XPM",
+#endif
+#ifdef wxUSE_ICO_CUR
+  "ICO_CUR",
+#endif
+  NULL
+};
+
+
+
+/*-----------------------------------------------------------------------------
+  EXTERN C
+-----------------------------------------------------------------------------*/
+extern "C"
+{
+
+/*-----------------------------------------------------------------------------
+  pre-processor
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(int, wxVersionNumber)()
+{
+  return wxVERSION_NUMBER;
+}
+
+EWXWEXPORT(int, wxIsDefined)( char* s )
+{
+  int i;
+  if (s==NULL) return 0;
+  /* check define */
+  for( i=0; defineDefs[i] != NULL; i++ ) {
+    if (strcmp(s,defineDefs[i]) == 0) return 1;
+  }
+  /* check wxUSE_XXX */
+  if (strncmp(s,"wxUSE_",6) == 0) {
+    const char* t = s+6;
+    for( i=0; useDefs[i] != NULL; i++ ) {
+      if (strcmp(t,useDefs[i]) == 0) return 1;
+    }
+  }
+  /* check wxHAS_XXX */
+  if (strncmp(s,"wxHAS_",6) == 0) {
+    const char* t = s+6;
+    for( i=0; hasDefs[i] != NULL; i++ ) {
+      if (strcmp(t,hasDefs[i]) == 0) return 1;
+    }
+  }
+  return 0;
+}
+
+EWXWEXPORT(void*, wxcMalloc)(int size )
+{
+  return malloc(size);
+}
+
+EWXWEXPORT(void, wxcFree)( void* p )
+{
+  if (p!=NULL) free(p);
+}
+
+EWXWEXPORT(wxColour*, wxcSystemSettingsGetColour)( int systemColour )
+{
+   wxColour* colour = new wxColour();
+   *colour = wxSystemSettings::GetColour( (wxSystemColour)systemColour );
+   return colour;
+}
+
+EWXWEXPORT( void, wxcWakeUpIdle)(void)
+{
+  wxWakeUpIdle();
+}
+
+/*-----------------------------------------------------------------------------
+  delete
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(void, wxCursor_Delete) (void* _obj)
+{
+  delete ((wxCursor*)_obj);
+}
+
+EWXWEXPORT(void, wxDateTime_Delete) (void* _obj)
+{
+  delete ((wxDateTime*)_obj);
+}
+
+
+/*-----------------------------------------------------------------------------
+  frame
+-----------------------------------------------------------------------------*/
+
+
+
+/*-----------------------------------------------------------------------------
+  listctrl
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(int, wxListEvent_GetCacheFrom)(wxListEvent* _obj)
+{
+  return _obj->GetCacheFrom();
+}
+
+EWXWEXPORT(int, wxListEvent_GetCacheTo)(wxListEvent* _obj)
+{
+  return _obj->GetCacheTo();
+}
+
+struct SortData {
+  long id;
+  wxClosure* closure;
+};
+
+int wxCALLBACK sortCallBack( long item1, long item2, long data )
+{
+  wxClosure* closure = ((SortData*)data)->closure;
+  long       id      = ((SortData*)data)->id;
+
+  wxCommandEvent event( wxEVT_SORT, id );
+  event.SetInt(item1);
+  event.SetExtraLong(item2);
+  closure->Invoke(&event);
+  return event.GetInt();
+}
+
+EWXWEXPORT(int, wxListCtrl_SortItems2)(wxListCtrl* _obj, wxClosure* closure )
+{
+  SortData sortData = { _obj->GetId(), closure };
+  return (int)_obj->SortItems( sortCallBack, (long)&sortData );
+}
+
+/*-----------------------------------------------------------------------------
+  DC
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(void, wxDC_GetPixel2)(wxDC* _obj, int x, int y, wxColour* col)
+{
+  bool success = _obj->GetPixel((wxCoord)x, (wxCoord)y, col);
+  if (!success) *col = wxNullColour;
+}
+
+
+/*-----------------------------------------------------------------------------
+  Object & static ClassInfo
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(int,wxObject_IsKindOf)(void* _obj, void* classInfo )
+{
+  return (int)(((wxObject*)_obj)->IsKindOf((wxClassInfo*)classInfo) );
+}
+
+EWXWEXPORT(void*,wxObject_GetClassInfo)(void* _obj )
+{
+  return ((wxObject*)_obj)->GetClassInfo();
+}
+
+/* optimize */
+EWXWEXPORT(int,wxObject_IsScrolledWindow)(void* _obj)
+{
+  return (int)(((wxObject*)_obj)->IsKindOf(CLASSINFO(wxScrolledWindow)));
+}
+
+EWXWEXPORT(void,wxObject_Delete)(wxObject* _obj)
+{
+  delete _obj;
+}
+
+
+/*-----------------------------------------------------------------------------
+  classinfo
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(void*,wxClassInfo_FindClass)(char* _txt)
+{
+  return wxClassInfo::FindClass(_txt);
+}
+
+EWXWEXPORT(wxString*,wxClassInfo_GetClassNameEx)(void* _obj)
+{
+  return new wxString(((wxClassInfo*)_obj)->GetClassName());
+}
+
+EWXWEXPORT(wxString*,wxClassInfo_GetBaseClassName1)(void* _obj)
+{
+  return new wxString(((wxClassInfo*)_obj)->GetBaseClassName1());
+}
+
+EWXWEXPORT(wxString*,wxClassInfo_GetBaseClassName2)(void* _obj)
+{
+  return new wxString(((wxClassInfo*)_obj)->GetBaseClassName2());
+}
+
+EWXWEXPORT(int,wxClassInfo_IsKindOfEx)(void* _obj, void* classInfo)
+{
+  return (int)((wxClassInfo*)_obj)->IsKindOf((wxClassInfo*)classInfo);
+}
+
+EWXWEXPORT(int,wxClassInfo_GetSize)(void* _obj)
+{
+  return ((wxClassInfo*)_obj)->GetSize();
+}
+
+/*-----------------------------------------------------------------------------
+  window
+-----------------------------------------------------------------------------*/
+
+
+
+EWXWEXPORT(void, wxcGetMousePosition)( int* x, int* y )
+{
+  wxPoint pt = wxGetMousePosition();
+  if (x) *x = pt.x;
+  if (y) *y = pt.y;
+}
+
+/*-----------------------------------------------------------------------------
+  mouse
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(int, wxMouseEvent_GetWheelDelta) (void* _obj)
+{
+  return ((wxMouseEvent*)_obj)->GetWheelDelta();
+}
+
+EWXWEXPORT(int, wxMouseEvent_GetWheelRotation) (void* _obj)
+{
+  return ((wxMouseEvent*)_obj)->GetWheelRotation();
+}
+
+EWXWEXPORT(int, wxMouseEvent_GetButton) (void* _obj)
+{
+  return ((wxMouseEvent*)_obj)->GetButton();
+}
+
+EWXWEXPORT(int,expEVT_MOUSEWHEEL)()
+{
+    return (int)wxEVT_MOUSEWHEEL;
+}
+
+
+/*-----------------------------------------------------------------------------
+  DC
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(double, wxDC_GetUserScaleX)( wxDC* dc )
+{
+  double x = 1.0;
+  double y = 1.0;
+  dc->GetUserScale(&x,&y);
+  return x;
+}
+
+
+EWXWEXPORT(double, wxDC_GetUserScaleY)( wxDC* dc )
+{
+  double x = 1.0;
+  double y = 1.0;
+  dc->GetUserScale(&x,&y);
+  return y;
+}
+
+
+/*-----------------------------------------------------------------------------
+  timers
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(void*, wxTimerEx_Create)()
+{
+  return new wxTimerEx();
+}
+
+EWXWEXPORT(void, wxTimerEx_Connect)(void* _obj, void* _closure )
+{
+  ((wxTimerEx*)_obj)->Connect((wxClosure*)_closure);
+}
+
+EWXWEXPORT(void*, wxTimerEx_GetClosure)(void* _obj)
+{
+  return (void*)(((wxTimerEx*)_obj)->GetClosure());
+}
+
+/*------------------------------------------------------------------------------
+  standard dialogs
+------------------------------------------------------------------------------*/
+EWXWEXPORT(char*, wxcDirSelector)(char* message, char* path, long style, int x, int y, wxWindow* parent)
+{
+  wxString result = wxDirSelector(message, path, style, wxPoint(x,y), parent);
+  char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+  if (buf) strcpy (buf, result.c_str());
+  return buf;
+}
+
+EWXWEXPORT(char*, wxcFileSelector)(char* message, char* path, char *filename, char *extension,
+                                   char *wildcard, int flags,  wxWindow* parent, int x, int y)
+{
+  wxString result = wxFileSelector( message, path, filename, extension, wildcard, flags, parent, x, y);
+  char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+  if (buf) strcpy (buf, result.c_str());
+  return buf;
+}
+
+EWXWEXPORT(wxColor*, wxcGetColourFromUser)(wxWindow *parent, wxColour* colInit)
+{
+  if(colInit)
+    return new wxColour(wxGetColourFromUser(parent, *colInit));
+  return  new wxColour(wxGetColourFromUser(parent));
+}
+
+EWXWEXPORT(wxFont*, wxcGetFontFromUser)(wxWindow *parent, wxFont* fontInit)
+{
+  if(fontInit)
+    return new wxFont(wxGetFontFromUser(parent,*fontInit));
+  return new wxFont(wxGetFontFromUser(parent));
+}
+
+EWXWEXPORT(char*, wxcGetPasswordFromUser)(char* message, char* caption, char* defaultText, wxWindow* parent, int x, int y, int center)
+{
+  wxString result = wxGetPasswordFromUser( message, caption, defaultText, parent, x, y, center );
+  char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+  if (buf) strcpy (buf, result.c_str());
+  return buf;
+}
+
+EWXWEXPORT(char*, wxcGetTextFromUser)(char* message, char* caption, char* defaultText, wxWindow* parent, int x, int y, int center)
+{
+  wxString result = wxGetTextFromUser( message, caption, defaultText, parent, x, y, center );
+  char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+  if (buf) strcpy (buf, result.c_str());
+  return buf;
+}
+
+EWXWEXPORT(long,wxcGetNumberFromUser)( char* message, char* prompt, char* caption, long value, long min, long max, wxWindow* parent, int x, int y )
+{
+  return wxGetNumberFromUser(message, prompt, caption, value, min , max, parent, wxPoint(x,y) );
+}
+
+ 
+ EWXWEXPORT(int, wxcMessageBox)(char* message, char* caption, int style, wxWindow* parent, int x, int y)
+{
+  return wxMessageBox( message, caption, style, parent, x, y);
+}
+ 
+EWXWEXPORT(void, wxcBell)(void)
+{
+  wxBell();
+}
+
+EWXWEXPORT(void, wxcBeginBusyCursor)(void)
+{
+  wxBeginBusyCursor();
+}
+
+EWXWEXPORT(int, wxcIsBusy)(void)
+{
+  return (wxIsBusy() != 0);
+}
+
+EWXWEXPORT(void, wxcEndBusyCursor)(void)
+{
+  wxEndBusyCursor();
+}
+
+/*-----------------------------------------------------------------------------
+  wxInputSink
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(wxInputSink*, wxInputSink_Create)( wxInputStream* input, wxEvtHandler* evtHandler, int bufferLen )
+{
+  return new wxInputSink(input,evtHandler,bufferLen);
+}
+
+EWXWEXPORT(int, wxInputSink_GetId)( wxInputSink* obj )
+{
+  return obj->GetId();
+}
+
+EWXWEXPORT(void, wxInputSink_Start)( wxInputSink* obj )
+{
+  obj->Start();
+}
+
+
+EWXWEXPORT(int, wxInputSinkEvent_LastError)( wxInputSinkEvent* obj )
+{
+  return obj->LastError();
+}
+
+EWXWEXPORT(int, wxInputSinkEvent_LastRead)( wxInputSinkEvent* obj )
+{
+  return obj->LastRead();
+}
+
+EWXWEXPORT(char*, wxInputSinkEvent_LastInput)( wxInputSinkEvent* obj )
+{
+  return obj->LastInput();
+}
+
+
+/*-----------------------------------------------------------------------------
+  html window
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(void*,wxcHtmlEvent_GetMouseEvent)( void* _obj )
+{
+    return (void*)(((wxcHtmlEvent*)_obj)->GetMouseEvent());
+}
+
+EWXWEXPORT(void*,wxcHtmlEvent_GetHtmlCell)( void* _obj  )
+{
+    return (void*)(((wxcHtmlEvent*)_obj)->GetHtmlCell());
+}
+
+EWXWEXPORT(wxString*,wxcHtmlEvent_GetHtmlCellId)( wxcHtmlEvent* _obj)
+{
+    return _obj->GetHtmlCellId();
+}
+
+EWXWEXPORT(wxString*,wxcHtmlEvent_GetHref)( wxcHtmlEvent* _obj)
+{
+    return _obj->GetHref();
+}
+
+EWXWEXPORT(wxString*,wxcHtmlEvent_GetTarget)( wxcHtmlEvent* _obj )
+{
+    return _obj->GetTarget();
+}
+
+EWXWEXPORT(void,wxcHtmlEvent_GetLogicalPosition)( wxcHtmlEvent* _obj, int* x, int* y )
+{
+    wxPoint p = _obj->GetLogicalPosition();
+    if (x) *x = p.x;
+    if (y) *y = p.y;
+    return;
+}
+
+
+/*-----------------------------------------------------------------------------
+  html window
+-----------------------------------------------------------------------------*/
+EWXWEXPORT( void*, wxHtmlWindow_Create)(void* _prt, int _id, int _lft, int _top, int _wdt, int _hgt, long _stl, char* _txt)
+{
+    return (void *) (wxHtmlWindow*) new wxHtmlWindow((wxWindow*)_prt, _id, wxPoint(_lft, _top), wxSize(_wdt, _hgt), _stl, _txt );
+}
+
+EWXWEXPORT( void*, wxcHtmlWindow_Create)(void* _prt, int _id, int _lft, int _top, int _wdt, int _hgt, long _stl, char* _txt)
+{
+    return (void *) (wxcHtmlWindow*) new wxcHtmlWindow((wxWindow*)_prt, _id, wxPoint(_lft, _top), wxSize(_wdt, _hgt), _stl, _txt );
+}
+
+
+EWXWEXPORT( int, wxHtmlWindow_AppendToPage)(void * _obj, char * source)
+{
+    return (int) ((wxHtmlWindow*)_obj)->AppendToPage( source  );
+}
+
+EWXWEXPORT( void *, wxHtmlWindow_GetInternalRepresentation)(void * _obj)
+{
+    return (void *) ((wxHtmlWindow*)_obj)->GetInternalRepresentation(   );
+}
+
+EWXWEXPORT( char*, wxHtmlWindow_GetOpenedAnchor)(void * _obj)
+{
+    wxString result = ((wxHtmlWindow*)_obj)->GetOpenedAnchor();
+    char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+    if (buf) strcpy (buf, result.c_str());
+    delete result;
+    return buf;
+}
+
+EWXWEXPORT( char*, wxHtmlWindow_GetOpenedPage)(void * _obj)
+{
+    wxString result = ((wxHtmlWindow*)_obj)->GetOpenedPage();
+    char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+    if (buf) strcpy (buf, result.c_str());
+    delete result;
+    return buf;
+}
+
+EWXWEXPORT( char*, wxHtmlWindow_GetOpenedPageTitle)(void * _obj)
+{
+    wxString result = ((wxHtmlWindow*)_obj)->GetOpenedPageTitle();
+    char *buf = (char*)malloc((1+result.Length())*sizeof(char));
+    if (buf) strcpy (buf, result.c_str());
+    delete result;
+    return buf;
+}
+
+
+EWXWEXPORT( void *, wxHtmlWindow_GetRelatedFrame)(void * _obj)
+{
+    return (void *) ((wxHtmlWindow*)_obj)->GetRelatedFrame(   );
+}
+
+EWXWEXPORT( int, wxHtmlWindow_HistoryBack)(void * _obj)
+{
+    return (int) ((wxHtmlWindow*)_obj)->HistoryBack(   );
+}
+
+EWXWEXPORT( int, wxHtmlWindow_HistoryCanBack)(void * _obj)
+{
+    return (int) ((wxHtmlWindow*)_obj)->HistoryCanBack(   );
+}
+
+EWXWEXPORT( int, wxHtmlWindow_HistoryCanForward)(void * _obj)
+{
+    return (int) ((wxHtmlWindow*)_obj)->HistoryCanForward(   );
+}
+
+EWXWEXPORT( void, wxHtmlWindow_HistoryClear)(void * _obj)
+{
+    ((wxHtmlWindow*)_obj)->HistoryClear(   );
+}
+
+EWXWEXPORT( int, wxHtmlWindow_HistoryForward)(void * _obj)
+{
+    return (int) ((wxHtmlWindow*)_obj)->HistoryForward(   );
+}
+
+EWXWEXPORT( int, wxHtmlWindow_LoadPage)(void * _obj, char *location)
+{
+    return (int) ((wxHtmlWindow*)_obj)->LoadPage(location );
+}
+
+
+EWXWEXPORT( void, wxHtmlWindow_ReadCustomization)(void * _obj, void * cfg, char * path)
+{
+    ((wxHtmlWindow*)_obj)->ReadCustomization( ((wxConfigBase *) cfg), path );
+}
+
+EWXWEXPORT(  void, wxHtmlWindow_SetBorders)(void * _obj, int b)
+{
+    ((wxHtmlWindow*)_obj)->SetBorders( b );
+}
+
+EWXWEXPORT( void, wxHtmlWindow_SetFonts)(void * _obj, char * normal_face, char * fixed_face, int *sizes)
+{
+    ((wxHtmlWindow*)_obj)->SetFonts(normal_face, fixed_face, sizes );
+}
+
+EWXWEXPORT( int, wxHtmlWindow_SetPage)(void * _obj, char * source)
+{
+    return ((wxHtmlWindow*)_obj)->SetPage( source );
+}
+
+EWXWEXPORT( void, wxHtmlWindow_SetRelatedFrame)(void * _obj, void * frame, char * format)
+{
+    ((wxHtmlWindow*)_obj)->SetRelatedFrame(  ((wxFrame *) frame), format);
+}
+
+EWXWEXPORT( void, wxHtmlWindow_SetRelatedStatusBar)(void * _obj, int bar)
+{
+    ((wxHtmlWindow*)_obj)->SetRelatedStatusBar(bar);
+}
+
+EWXWEXPORT( void, wxHtmlWindow_WriteCustomization)(void * _obj, void *cfg, char * path)
+{
+    ((wxHtmlWindow*)_obj)->WriteCustomization( ((wxConfigBase *) cfg), path );
+}
+
+/*-----------------------------------------------------------------------------
+  LOGGER
+-----------------------------------------------------------------------------*/
+EWXWEXPORT( wxLogStderr*, wxLogStderr_Create)()
+{
+  return new wxLogStderr();
+}
+
+EWXWEXPORT( wxLogStderr*, wxLogStderr_CreateStdOut)()
+{
+  return new wxLogStderr(stdout);
+}
+
+EWXWEXPORT( wxLogNull*, wxLogNull_Create)()
+{
+  return new wxLogNull();
+}
+
+EWXWEXPORT( wxLogTextCtrl*, wxLogTextCtrl_Create)( wxTextCtrl* text )
+{
+  return new wxLogTextCtrl(text);
+}
+
+EWXWEXPORT( wxLogWindow*, wxLogWindow_Create)( wxFrame* parent, char* title, int showit, int passthrough )
+{
+  return new wxLogWindow(parent,title,showit,passthrough);
+}
+
+EWXWEXPORT( wxFrame*, wxLogWindow_GetFrame)( wxLogWindow* obj )
+{
+  return obj->GetFrame();
+}
+
+EWXWEXPORT(void,wxLog_Delete)(void* _obj)
+{
+        delete (wxLog*)_obj;
+}
+
+EWXWEXPORT(void,wxLog_OnLog)(void* _obj, int level, void* szString, int tm)
+{
+        ((wxLog*)_obj)->OnLog((wxLogLevel)level, (const wxChar*)szString, (time_t)tm);
+}
+
+EWXWEXPORT(void,wxLog_Flush)(void* _obj)
+{
+        ((wxLog*)_obj)->Flush();
+}
+
+EWXWEXPORT(int,wxLog_HasPendingMessages)(void* _obj)
+{
+        return (int)((wxLog*)_obj)->HasPendingMessages();
+}
+
+EWXWEXPORT(void,wxLog_FlushActive)(void* _obj)
+{
+        ((wxLog*)_obj)->FlushActive();
+}
+
+EWXWEXPORT(void*,wxLog_GetActiveTarget)()
+{
+        return (void*)wxLog::GetActiveTarget();
+}
+
+EWXWEXPORT(void*,wxLog_SetActiveTarget)(void* pLogger)
+{
+        return (void*)wxLog::SetActiveTarget((wxLog*)pLogger);
+}
+
+EWXWEXPORT(void,wxLog_Suspend)(void* _obj)
+{
+        ((wxLog*)_obj)->Suspend();
+}
+
+EWXWEXPORT(void,wxLog_Resume)(void* _obj)
+{
+        ((wxLog*)_obj)->Resume();
+}
+
+EWXWEXPORT(void,wxLog_SetVerbose)(void* _obj, int bVerbose)
+{
+        ((wxLog*)_obj)->SetVerbose(bVerbose != 0);
+}
+
+EWXWEXPORT(void,wxLog_DontCreateOnDemand)(void* _obj)
+{
+        ((wxLog*)_obj)->DontCreateOnDemand();
+}
+
+EWXWEXPORT(void,wxLog_SetTraceMask)(void* _obj, int ulMask)
+{
+        ((wxLog*)_obj)->SetTraceMask((wxTraceMask)ulMask);
+}
+
+EWXWEXPORT(void,wxLog_AddTraceMask)(void* _obj, void* str)
+{
+        ((wxLog*)_obj)->AddTraceMask((const char*)str);
+}
+
+EWXWEXPORT(void,wxLog_RemoveTraceMask)(void* _obj, void* str)
+{
+        ((wxLog*)_obj)->RemoveTraceMask((const char*)str);
+}
+
+EWXWEXPORT(void,wxLog_SetTimestamp)(void* _obj, void* ts)
+{
+        ((wxLog*)_obj)->SetTimestamp((const wxChar*)ts);
+}
+
+EWXWEXPORT(int,wxLog_GetVerbose)(void* _obj)
+{
+        return (int)((wxLog*)_obj)->GetVerbose();
+}
+
+EWXWEXPORT(int,wxLog_GetTraceMask)(void* _obj)
+{
+        return (int)((wxLog*)_obj)->GetTraceMask();
+}
+
+EWXWEXPORT(int,wxLog_IsAllowedTraceMask)(void* _obj, void* mask)
+{
+        return (int)((wxLog*)_obj)->IsAllowedTraceMask((const wxChar*)mask);
+}
+
+EWXWEXPORT(void*,wxLog_GetTimestamp)(void* _obj)
+{
+        return (void*)((wxLog*)_obj)->GetTimestamp();
+}
+
+
+EWXWEXPORT(void,LogError)(void* _msg)
+{
+        wxLogError((char*)_msg);
+}
+
+EWXWEXPORT(void,LogFatalError)(void* _msg)
+{
+        wxLogFatalError((char*)_msg);
+}
+
+EWXWEXPORT(void,LogWarning)(void* _msg)
+{
+        wxLogWarning((char*)_msg);
+}
+
+EWXWEXPORT(void,LogMessage)(void* _msg)
+{
+        wxLogMessage((char*)_msg);
+}
+
+EWXWEXPORT(void,LogVerbose)(void* _msg)
+{
+        wxLogVerbose((char*)_msg);
+}
+
+EWXWEXPORT(void,LogStatus)(void* _msg)
+{
+        wxLogStatus((char*)_msg);
+}
+
+EWXWEXPORT(void,LogSysError)(void* _msg)
+{
+        wxLogSysError((char*)_msg);
+}
+
+EWXWEXPORT(void,LogDebug)(void* _msg)
+{
+        wxLogDebug((char*)_msg);
+}
+
+EWXWEXPORT(void,LogTrace)(void* mask, void* _msg)
+{
+        wxLogTrace((char*) mask, (char*)_msg);
+}
+
+/*-----------------------------------------------------------------------------
+  Grid text editor
+-----------------------------------------------------------------------------*/
+EWXWEXPORT(wxGridCellTextEnterEditor*,wxGridCellTextEnterEditor_Ctor)()
+{
+  return new wxGridCellTextEnterEditor();
+}
+
+/*-----------------------------------------------------------------------------
+  ConfigBase
+-----------------------------------------------------------------------------*/
+EWXWEXPORT( wxConfigBase*, wxConfigBase_Get)()
+{
+  return wxConfigBase::Get();
+}
+
+EWXWEXPORT( void, wxConfigBase_Set)( wxConfigBase* self )
+{
+  wxConfigBase::Set( self );
+}
+
+EWXWEXPORT( wxFileConfig*, wxFileConfig_Create)( wxInputStream* inp )
+{
+  return new wxFileConfig( *inp );
+}
+
+
+} /* extern "C" */

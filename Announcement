@@ -1,0 +1,64 @@
+Announcement: wxCL 1.3.0  (May 20, 2006) ***
+ ---------------------------
+
+ <http://www.wxcl-project.org>
+
+We are pleased to announce the release wxCL-1.3.0 (Alpha), the latest
+installment in wxCL development effort. In this release wxCL now
+uses CFFI as a backend. Since the CFFI bindings are new, there may be
+still many bugs.
+
+What is wxCL?
+-------------
+
+wxCL aims to provide an industrial strength GUI library to application
+programmers which is portable across Common Lisp implementations and
+operating system platforms. It builds upon wxWidgets, a comprehensive
+C++ library that provides uniform application interface to all major
+GUI platforms: including  GTK, Windows, X11, and MacOS X. 
+
+Availability:
+-------------
+
+The current release of wxCL 1.3.0 should run on all the common lisp
+implementations supported by CFFI. Although, tested only on
+Windows XP but it should work on Linux and Mac OS X as well (not
+tested due to lack of resources). If you face any problem on any platform
+or common lisp implementation, feel free to contact us on the mailing list, 
+we will try to help you.
+
+It can be downloaded from:
+
+http://sourceforge.net/project/showfiles.php?group_id=143661
+
+
+We need your help.
+------------------
+If you are a Common Lisp, we will appreciate if you join our development
+ team and help us in improving and designing the library.  
+Contributors (including newbies) with all levels of expertise are
+welcome. Even if you cannot contribute with code, helping us in making
+design choices, reporting bugs, etc.
+
+
+
+Contacting Us or Questions/Feedbacks
+----------------------------------
+
+The best place to ask questions, and/or give feedback on the library
+is wxCL-devel mailing list. 
+
+http://sourceforge.net/mail/?group_id=143661
+
+For Reporting Bugs
+------------------
+http://sourceforge.net/tracker/?group_id=143661&atid=756151
+
+For Patches
+-----------
+http://sourceforge.net/tracker/?group_id=143661&atid=756153
+
+
+All the best,
+  wxCL - Project Team.
+
